@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 
+// @Global()
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
@@ -9,4 +10,8 @@ import { UsersController } from './users.controller';
   // imports: [CommonModule],
   // exports: [CommonModule],
 })
-export class UsersModule {}
+
+// dependency injections
+export class UsersModule {
+  constructor(private userService: UsersService) {}
+}
