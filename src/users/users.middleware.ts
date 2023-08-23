@@ -8,3 +8,13 @@ export class UserMiddleware implements NestMiddleware {
     next();
   }
 }
+
+// functional middleware
+export function DummyFunctionalMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  console.log('Functional Middleware');
+  next();
+}

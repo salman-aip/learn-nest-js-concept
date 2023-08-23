@@ -10,7 +10,10 @@ import { CatsController } from './cats/cats.controller';
 import { DogsController } from './dogs/dogs.controller';
 import { AdminController } from './admin/admin.controller';
 import { UsersModule } from './users/users.module';
-import { UserMiddleware } from './users/users.middleware';
+import {
+  DummyFunctionalMiddleware,
+  UserMiddleware,
+} from './users/users.middleware';
 // import { UsersController } from './users/users.controller';
 
 @Module({
@@ -23,7 +26,7 @@ import { UserMiddleware } from './users/users.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(UserMiddleware)
+      .apply(UserMiddleware, DummyFunctionalMiddleware)
       .exclude({ path: 'cats', method: RequestMethod.ALL }, 'dogs/(.*)')
       .forRoutes({ path: 'users', method: RequestMethod.GET });
     // accept string, multiple string, object, controller/multiple controller
