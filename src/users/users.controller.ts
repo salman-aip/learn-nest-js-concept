@@ -8,6 +8,7 @@ import {
   Delete,
   HttpException,
   HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -25,6 +26,13 @@ export class UsersController {
   @Get()
   async findAll() {
     // throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+
+    // built-in exceptions:::
+    // throw new BadRequestException('Something bad happened', {
+    //   cause: new Error(),
+    //   description: 'Some error description',
+    // });
+
     return this.usersService.findAll();
 
     // catch(error) {
