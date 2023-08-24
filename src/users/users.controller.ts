@@ -9,17 +9,21 @@ import {
   HttpException,
   HttpStatus,
   BadRequestException,
+  UseFilters,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CustomException } from './user.exception';
+import { HttpExceptionFilter } from './http-exception.filter';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  // @UseFilters(new HttpExceptionFilter())
+  @UseFilters(HttpExceptionFilter) // reduce memory usages
   async create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
