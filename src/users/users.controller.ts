@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -21,8 +23,23 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
+  async findAll() {
+    // throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     return this.usersService.findAll();
+
+    // catch(error) {
+
+    //   throw new HttpException(
+    //     {
+    //       status: HttpStatus.FORBIDDEN,
+    //       error: 'This is a custom message',
+    //     },
+    //     HttpStatus.FORBIDDEN,
+    //     {
+    //       cause: error
+    //     },
+    //   )
+    // }
   }
 
   @Get(':id')
