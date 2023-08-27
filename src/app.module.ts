@@ -14,12 +14,20 @@ import {
   DummyFunctionalMiddleware,
   UserMiddleware,
 } from './users/users.middleware';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpExceptionFilter } from './users/http-exception.filter';
 // import { UsersController } from './users/users.controller';
 
 @Module({
   imports: [UsersModule],
   controllers: [AppController, CatsController, DogsController, AdminController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
 
 //middleware
