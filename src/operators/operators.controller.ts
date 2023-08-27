@@ -8,12 +8,15 @@ import {
   Delete,
   ParseIntPipe,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { OperatorsService } from './operators.service';
 import { CreateOperatorDto } from './dto/create-operator.dto';
 import { UpdateOperatorDto } from './dto/update-operator.dto';
+import { RolesGuard } from './role.guard';
 
 @Controller('operators')
+@UseGuards(RolesGuard)
 export class OperatorsController {
   constructor(private readonly operatorsService: OperatorsService) {}
 
