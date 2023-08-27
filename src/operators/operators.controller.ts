@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  HttpStatus,
 } from '@nestjs/common';
 import { OperatorsService } from './operators.service';
 import { CreateOperatorDto } from './dto/create-operator.dto';
@@ -27,7 +28,13 @@ export class OperatorsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: number) {
+  async findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ) {
     return this.operatorsService.findOne(+id);
   }
 
