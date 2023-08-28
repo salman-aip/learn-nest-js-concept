@@ -18,9 +18,10 @@ import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './users/http-exception.filter';
 // import { UsersController } from './users/users.controller';
 import { OperatorsModule } from './operators/operators.module';
+import { CompanyModule } from './company/company.module';
 
 @Module({
-  imports: [UsersModule, OperatorsModule],
+  imports: [UsersModule, OperatorsModule, CompanyModule],
   controllers: [AppController, CatsController, DogsController, AdminController],
   providers: [
     AppService,
