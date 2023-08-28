@@ -13,6 +13,7 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { CompanyInterceptor } from './company.interceptor';
 import { TransformInterceptor } from './transform.interceptor';
+import { ErrorsInterceptor } from './error.interceptor';
 
 @Controller('company')
 @UseInterceptors(CompanyInterceptor)
@@ -20,7 +21,7 @@ import { TransformInterceptor } from './transform.interceptor';
 //@UseInterceptors(new CompanyInterceptor())
 
 //response mapping
-@UseInterceptors(TransformInterceptor)
+@UseInterceptors(TransformInterceptor, ErrorsInterceptor)
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
