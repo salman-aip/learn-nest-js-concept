@@ -9,7 +9,7 @@ export class CompanyService {
   }
 
   findAll() {
-    return `This action returns all company`;
+    return null;
   }
 
   findOne(id: number) {
