@@ -6,12 +6,17 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { CompanyInterceptor } from './company.interceptor';
 
 @Controller('company')
+@UseInterceptors(CompanyInterceptor)
+// pass an in-place instance
+//@UseInterceptors(new CompanyInterceptor())
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
