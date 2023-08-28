@@ -14,6 +14,7 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 import { CompanyInterceptor } from './company.interceptor';
 import { TransformInterceptor } from './transform.interceptor';
 import { ErrorsInterceptor } from './error.interceptor';
+import { CacheInterceptor } from './cache.interceptor';
 
 @Controller('company')
 @UseInterceptors(CompanyInterceptor)
@@ -21,7 +22,9 @@ import { ErrorsInterceptor } from './error.interceptor';
 //@UseInterceptors(new CompanyInterceptor())
 
 //response mapping
-@UseInterceptors(TransformInterceptor, ErrorsInterceptor)
+// exception mapping
+// stream override - cache interceptor
+@UseInterceptors(TransformInterceptor, ErrorsInterceptor, CacheInterceptor)
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 

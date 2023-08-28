@@ -9,7 +9,7 @@ export class CompanyService {
   }
 
   findAll() {
-    return null;
+    return `All Company lists`;
   }
 
   findOne(id: number) {
